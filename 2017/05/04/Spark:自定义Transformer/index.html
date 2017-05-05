@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Spark:自定义Transformer | Junlang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Transformer当我们从数据源读取了一些数据之后, 我们经常需要对这些数据进行一些预处理(类型转换,增删改等等). Spark的mllib提供了一些数据转换的类和函数，但是有时候并不能满足我们的需求，所以我们需要自给自足。当然，我们可以自己构建这些类和函数，但是如果可以利用Spark提供的一些接口，当然就事半功倍了。其中一个方法就是extends Transformer。关于Transfor">
+<meta name="keywords" content="Spark,Scala">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spark:自定义Transformer">
+<meta property="og:url" content="http://junelang.github.io/2017/05/04/Spark:自定义Transformer/index.html">
+<meta property="og:site_name" content="Junlang">
+<meta property="og:description" content="Transformer当我们从数据源读取了一些数据之后, 我们经常需要对这些数据进行一些预处理(类型转换,增删改等等). Spark的mllib提供了一些数据转换的类和函数，但是有时候并不能满足我们的需求，所以我们需要自给自足。当然，我们可以自己构建这些类和函数，但是如果可以利用Spark提供的一些接口，当然就事半功倍了。其中一个方法就是extends Transformer。关于Transfor">
+<meta property="og:updated_time" content="2017-05-04T15:56:21.540Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spark:自定义Transformer">
+<meta name="twitter:description" content="Transformer当我们从数据源读取了一些数据之后, 我们经常需要对这些数据进行一些预处理(类型转换,增删改等等). Spark的mllib提供了一些数据转换的类和函数，但是有时候并不能满足我们的需求，所以我们需要自给自足。当然，我们可以自己构建这些类和函数，但是如果可以利用Spark提供的一些接口，当然就事半功倍了。其中一个方法就是extends Transformer。关于Transfor">
+  
+    <link rel="alternate" href="/atom.xml" title="Junlang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Junlang</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">ORZ...</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://junelang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Spark:自定义Transformer" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/04/Spark:自定义Transformer/" class="article-date">
+  <time datetime="2017-05-04T14:27:33.000Z" itemprop="datePublished">2017-05-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Spark:自定义Transformer
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Transformer"><a href="#Transformer" class="headerlink" title="Transformer"></a>Transformer</h1><p>当我们从数据源读取了一些数据之后, 我们经常需要对这些数据进行一些预处理(类型转换,增删改等等). Spark的mllib提供了一些数据转换的类和函数，但是有时候并不能满足我们的需求，所以我们需要自给自足。当然，我们可以自己构建这些类和函数，但是如果可以利用Spark提供的一些接口，当然就事半功倍了。其中一个方法就是<code>extends Transformer</code>。关于<code>Transformer</code> 和 <code>Pipeline</code> 的介绍请戳<a href="https://spark.apache.org/docs/2.1.0/ml-pipeline.html#properties-of-pipeline-components" target="_blank" rel="external">官方文档</a>.</p>
+<p>一个最简单的非abstract的继承<code>Transformer</code>的类定义如下:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TypeTransformer</span> <span class="keyword">extends</span> <span class="title">Transformer</span></span>&#123;</div><div class="line">  <span class="keyword">override</span> <span class="keyword">val</span> uid: <span class="type">String</span> = <span class="type">Identifiable</span>.randomUID(<span class="string">"typeTransformer"</span>)</div><div class="line"></div><div class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">transformSchema</span></span>(schema: <span class="type">StructType</span>): <span class="type">StructType</span> = &#123;</div><div class="line">    <span class="comment">// 检查输入和输出是否符合要求, 比如数据类型.</span></div><div class="line">    <span class="comment">// 返回transform之后的schema</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">transform</span></span>(dataset: <span class="type">Dataset</span>[_]): <span class="type">DataFrame</span> = &#123;</div><div class="line">    <span class="comment">// 将输入的dataset(一般来说是DataFrame类型的)转换成新的dataset并返回</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">copy</span></span>(extra: <span class="type">ParamMap</span>): <span class="type">Transformer</span> = defaultCopy(extra) <span class="comment">// 暂时不知道有什么用</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后这个<code>TypeTransformer</code>就可以应用到<code>Pipeline</code>里面啦. 这就是我们的类要继承自<code>Transformer</code>的原因了, 因为<code>Pipeline</code>中的<code>stage</code>要么是<code>Transformer</code>,要么是<code>Estimator</code>. 而后者一般用于机器学习方法, 前者就是功能如其名了.</p>
+<p>为了让我们这个<code>TypeTransformer</code>更像Spark中别的Transformer, 我们还需要添加一些方法, 常用的就是:<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 定义需要的Param</span></div><div class="line"><span class="keyword">final</span> <span class="keyword">val</span> inputCol= <span class="keyword">new</span> <span class="type">Param</span>[<span class="type">String</span>](<span class="keyword">this</span>, <span class="string">"inputCol"</span>, <span class="string">"The input column"</span>)</div><div class="line"><span class="keyword">final</span> <span class="keyword">val</span> outputCol = <span class="keyword">new</span> <span class="type">Param</span>[<span class="type">String</span>](<span class="keyword">this</span>, <span class="string">"outputCol"</span>, <span class="string">"The output column"</span>)</div><div class="line"><span class="comment">// 设置需要transform的column的名字</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">setInputCol</span></span>(value: <span class="type">String</span>): <span class="keyword">this</span>.<span class="keyword">type</span> = set(inputCol, value)</div><div class="line"><span class="comment">//设置transformed的column的名字</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">setOutputCol</span></span>(value: <span class="type">String</span>): <span class="keyword">this</span>.<span class="keyword">type</span> = set(outputCol, value)</div></pre></td></tr></table></figure></p>
+<p>接下来就要使用这个<code>TypeTransformer</code>了:<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 创建实例并设置好参数</span></div><div class="line"><span class="keyword">val</span> typeTransformer = <span class="keyword">new</span> <span class="type">TypeTransformer</span>().setInputCol(v1).setOutputCol(v2)</div><div class="line"><span class="comment">// 应用到数据上</span></div><div class="line">typeTransformer.fit(someDataFrame).transform(someDataFrame) <span class="comment">// 得到新的dataFrame</span></div></pre></td></tr></table></figure></p>
+<p>这就完了??<br>好像这个<code>TypeTransformer</code>一次只能处理一列啊, 没错, 就是这样!<br>好蠢啊○|￣|_<br>当然了, 我们可以添加一个方法接收多个inputCol嘛, 不过为了简单介绍一下<code>Pipeline</code>的用法, 我们可以把n个<code>TypeTransformer</code>应用到<code>Pipeline</code>中,每个<code>TypeTransformer</code>的输出都是下一个的输入. 代码如下:<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> ypeTransformers: <span class="type">Array</span>[<span class="type">PipelineStage</span>] = <span class="type">Array</span>(typeTransformer1, typeTransformer2, typeTransformer3)</div><div class="line"><span class="keyword">val</span> typeTransformPipeline = <span class="keyword">new</span> <span class="type">Pipeline</span>().setStages(typeTransformers)</div><div class="line"><span class="keyword">val</span> result = typeTransformPipeline.fit(dataFrame).transform(dataFrame)</div></pre></td></tr></table></figure></p>
+<p>结果就是3个<code>typeTransformer</code>的顺序调用后的结果.</p>
+
+      
+    </div>
+    <!-- footer -->
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/04/27/逆变和协变的一点理解/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">逆变和协变的一点理解</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scala/">Scala</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/">Spark</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Scala/" style="font-size: 20px;">Scala</a> <a href="/tags/Spark/" style="font-size: 10px;">Spark</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/05/04/Spark:自定义Transformer/">Spark:自定义Transformer</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/27/逆变和协变的一点理解/">逆变和协变的一点理解</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Junlang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'junelang';
+  
+  var disqus_url = 'http://junelang.github.io/2017/05/04/Spark:自定义Transformer/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>逆变和协变的一点理解 | Junlang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言刚开始接触Scala，各种复杂的features真是有点难理解，特别是逆变和协变，网上其实很多资料都有详细介绍，但看完后总有一种：道理我都懂，但是为什么呢？ 的感觉。好吧，自己试一下应该会帮助理解。 先放张图{% asset_img covariant.png &quot;来自知乎的回答-作者:夏梓耀https://zhihu.com/question/35339328/answer/62632559&quot;">
+<meta name="keywords" content="Scala">
+<meta property="og:type" content="article">
+<meta property="og:title" content="逆变和协变的一点理解">
+<meta property="og:url" content="http://junelang.github.io/2017/04/27/逆变和协变的一点理解/index.html">
+<meta property="og:site_name" content="Junlang">
+<meta property="og:description" content="前言刚开始接触Scala，各种复杂的features真是有点难理解，特别是逆变和协变，网上其实很多资料都有详细介绍，但看完后总有一种：道理我都懂，但是为什么呢？ 的感觉。好吧，自己试一下应该会帮助理解。 先放张图{% asset_img covariant.png &quot;来自知乎的回答-作者:夏梓耀https://zhihu.com/question/35339328/answer/62632559&quot;">
+<meta property="og:updated_time" content="2017-05-05T08:25:29.060Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="逆变和协变的一点理解">
+<meta name="twitter:description" content="前言刚开始接触Scala，各种复杂的features真是有点难理解，特别是逆变和协变，网上其实很多资料都有详细介绍，但看完后总有一种：道理我都懂，但是为什么呢？ 的感觉。好吧，自己试一下应该会帮助理解。 先放张图{% asset_img covariant.png &quot;来自知乎的回答-作者:夏梓耀https://zhihu.com/question/35339328/answer/62632559&quot;">
+  
+    <link rel="alternate" href="/atom.xml" title="Junlang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Junlang</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">ORZ...</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://junelang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-逆变和协变的一点理解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/27/逆变和协变的一点理解/" class="article-date">
+  <time datetime="2017-04-27T12:39:13.000Z" itemprop="datePublished">2017-04-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      逆变和协变的一点理解
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>刚开始接触Scala，各种复杂的features真是有点难理解，特别是逆变和协变，网上其实很多资料都有详细介绍，但看完后总有一种：<code>道理我都懂，但是为什么呢？</code> 的感觉。好吧，自己试一下应该会帮助理解。</p>
+<h1 id="先放张图"><a href="#先放张图" class="headerlink" title="先放张图"></a>先放张图</h1>{% asset_img covariant.png "来自知乎的回答-作者:夏梓耀https://zhihu.com/question/35339328/answer/62632559" %}  
+<p>首先感谢一下这位作者，这张图可以说是很好理解了。根据这张图，当你有一根竹子的时候，你可以把它给任意一个consumer，因为以能量和植物为食的consumer一样也可以食用他们的子类竹子。同时，<br>以竹子为食的consumer &gt;: 植物为食的consumer &gt;: 能量为食的consumer。但是这里有一个问题，常识上来说（以竹子为食的）熊猫（实际上熊猫是杂食动物，只不过图里面的那个长得像熊猫）应该是草食动物的子类，当我们应用了逆变以后，继承关系完全相反了，这点先按下不提。那么对于协变来说，情况就刚好相反…… 很好理解：一个流浪动物收容所专门接收流浪动物，一个流浪猫收容所专门接收流浪猫，流浪猫 is-a 流浪动物，流浪猫收容所 is-a 流浪动物收容所。</p>
+<h1 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h1><p>为了更好的理解逆变和协变，首先要知道什么是里氏替换原则。参考资料：</p>
+<ul>
+<li><a href="http://hongjiang.info/scala-pitfalls-10/" target="_blank" rel="external">scala雾中风景(10): 逆变点与协变点</a></li>
+<li><a href="http://www.cnblogs.com/hellojava/archive/2013/03/15/2960905.html" target="_blank" rel="external">里氏替换原则</a></li>
+<li><a href="http://stackoverflow.com/questions/56860/what-is-the-liskov-substitution-principle" target="_blank" rel="external">What is the Liskov Substitution Principle</a>  </li>
+</ul>
+<p>根据最后一个链接的栗子，根据常识，当我们需要定义一个正方形类的时候，我们可能希望它继承自长方形类，因为根据我们学过的小学数学，正方形的确是一种特殊的长方形，正方形 is-a 长方形。但是长方形类里有<code>setWidth(x: Int)</code> 和 <code>setHeight(y: Int)</code> 两个方法， which并不适用于正方形。那么这种继承关系违反了里氏替换原则：</p>
+<blockquote>
+<p>Functions that use pointers or references to base classes must be able to use objects of derived classes without knowing it.</p>
+</blockquote>
+<p>为了满足该原则，如第一个链接里所说的：</p>
+<blockquote>
+<p>子类型中的fun函数参数类型必须是父类型中函数参数的超类（至少跟父类型中的参数类型一致），这样才能满足父类中fun方法可以做的事情，子类中fun方法也都可以做。</p>
+</blockquote>
+<p>所以我们需要定义一个逆变的类型参数：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>[-<span class="type">T</span>] </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">func</span></span>(x: <span class="type">T</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样，假设我们有：<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> a1 = <span class="keyword">new</span> <span class="type">A</span>[<span class="type">Animal</span>]</div><div class="line"><span class="keyword">val</span> a2 = <span class="keyword">new</span> <span class="type">A</span>[<span class="type">Cat</span>]</div><div class="line"><span class="comment">// 根据逆变的规则，a1 是 a2 的子类</span></div><div class="line">a1.func(<span class="keyword">new</span> <span class="type">Animal</span>) <span class="comment">// OK</span></div><div class="line">a1.func(<span class="keyword">new</span> <span class="type">Cat</span>) <span class="comment">// OK</span></div><div class="line"></div><div class="line">a2.func(<span class="keyword">new</span> <span class="type">Cat</span>) <span class="comment">// OK</span></div><div class="line">a1.func(<span class="keyword">new</span> <span class="type">Animal</span>) <span class="comment">// false</span></div></pre></td></tr></table></figure></p>
+<p>a1的func可以接收的类型范围为[<em> &lt;: Animal], a2的func可以接收的类型范围为[</em> &lt;: Cat]. 显然，a1的更大，那么所有调用a2.func的地方都可以用a1.func来代替，所以我们可以用a2的子类a1替换掉a2“with out knowing it”.</p>
+<p>同时，根据协变的要求，子类的方法的的返回类型应该比父类的方法的返回类型更加具体。现在给A添加一个方法<code>def func2(): T</code>,这时编译器会报错，因为我们把逆变类型放在了协变点上。更改一下方法：<code>def func2[K :&lt; T](): T</code>,这时没有问题。因为当我们用子类替代掉父类的时候，子类方法的返回类型不会比父类的返回类型在继承关系树上更高，符合里氏替换原则。</p>
+<p>根据OOP和LSP，继承关系是取决于两个class是否有相同的行为，而不是他们是否有相同的属性。<br>那么对于正方形和长方形来说，长方形应该 is-a 正方形（如果非要有继承关系的话），虽然这违反直觉，但是可以保障我们的类型系统安全。</p>
+<h1 id="LSP-in-Scala"><a href="#LSP-in-Scala" class="headerlink" title="LSP in Scala"></a>LSP in Scala</h1><p>在Scala中，当你要定义一个有泛型参数的类，有协变，逆变和不变3种关系：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 逆变</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>[-<span class="type">T</span>] </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">contraFunc</span></span>(x: <span class="type">T</span>)</div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">coFunc</span></span>[<span class="type">H</span> &lt;: <span class="type">T</span>](x: <span class="type">T</span>): <span class="type">H</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 协变</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>[<span class="type">T</span>] </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">contraFunc</span></span>[<span class="type">H</span> :&gt; <span class="type">T</span>](x: <span class="type">H</span>)</div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">coFunc</span></span>(): <span class="type">T</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>那么什么时候使用逆变或者协变呢？一个大概的通用的原则是：当这个容器类（Container）中的方法把泛型对象当做数据的消费者（我把一些数据塞给你，但是我并不需要知道你怎么处理这些数据）的时候，应该声明为逆变（即使接收数据的是子类，所接收的数据类型的范围也不会变小）；当把泛型对象当做数据的提供者（我需要你返回一些数据）的时候，应该声明为协变（子类返回更加具体的数据类型）。当然现实情况是，很多时候我们既需要处理数据也需要返回数据，那么在逆变的情况下如果需要返回数据，应该通过一个上界来保证子类比父类的返回类型更加具体。在协变的情况下，通过下界来保证子类接受的参数比父类的范围要大。<br>值得注意的是，如果在协变中方法定义了下界使得接收参数范围类型变大以符合逆变点的要求，需要注意这时候方法理论上可以接受下界类型的任意父类型（上至AnyRef)，这可能会导致出错。<br>反过来，如果定义了逆变，那么父类的Container就会变成子类的Container的子类，如果不注意到这一点，很可能也会出错。比如<code>篮球</code>是<code>运动</code>的子类，如果我们定义一个逆变的容器类<code>运动员</code>，带有一个方法<code>play(x: T)</code>接收任意运动类型，那么<code>运动员[篮球]</code>是<code>运动员[运动]</code>的父类,那么篮球运动员和运动员都可以<code>play(篮球)</code>，而篮球运动员不能<code>play(运动)</code>而运动员可以。根据LSP，这样的定义是对的。然而这时候如果我们再定义一个篮球队，招募篮球运动员。然而这时候运动员是篮球运动员的子类，我们很可能会不小心招募到一个不会篮球的运动员，gg。</p>
+
+      
+    </div>
+    <!-- footer -->
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/04/Spark:自定义Transformer/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Spark:自定义Transformer
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scala/">Scala</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/">Spark</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Scala/" style="font-size: 20px;">Scala</a> <a href="/tags/Spark/" style="font-size: 10px;">Spark</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/05/04/Spark:自定义Transformer/">Spark:自定义Transformer</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/27/逆变和协变的一点理解/">逆变和协变的一点理解</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Junlang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'junelang';
+  
+  var disqus_url = 'http://junelang.github.io/2017/04/27/逆变和协变的一点理解/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
