@@ -100,7 +100,7 @@
 <meta property="og:url" content="http://junelang.github.io/2017/07/27/构建自己的Spark库/index.html">
 <meta property="og:site_name" content="Junlang">
 <meta property="og:description" content="获取Spark源码开发中难免需要修改Spark源码, 构建自己的Spark库, 并在自己的项目中引用. 下面来说一下具体步骤.">
-<meta property="og:updated_time" content="2017-07-31T12:43:53.333Z">
+<meta property="og:updated_time" content="2017-07-31T12:48:38.713Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="构建自己的Spark库">
 <meta name="twitter:description" content="获取Spark源码开发中难免需要修改Spark源码, 构建自己的Spark库, 并在自己的项目中引用. 下面来说一下具体步骤.">
@@ -320,7 +320,8 @@
       
 
       
-        <h1 id="获取Spark源码"><a href="#获取Spark源码" class="headerlink" title="获取Spark源码"></a>获取Spark源码</h1><p>开发中难免需要修改Spark源码, 构建自己的Spark库, 并在自己的项目中引用. 下面来说一下具体步骤.<br><a id="more"></a><br>有两个方法:  </p>
+        <h1 id="获取Spark源码"><a href="#获取Spark源码" class="headerlink" title="获取Spark源码"></a>获取Spark源码</h1><p>开发中难免需要修改Spark源码, 构建自己的Spark库, 并在自己的项目中引用. 下面来说一下具体步骤.<br><a id="more"></a></p>
+<p>有两个方法:  </p>
 <ol>
 <li>从 github 上 clone. 但是如果直接 clone 的话,获取到的是最新的,正在开发的版本,并不稳定. 想要获取之前版本的话, 要指定版本:<br><code>git clone git://github.com/apache/spark.git -b branch-2.2</code><br>我要用的版本是2.1.1, 而2.2中包含了2.1的稳定版, 所以 clone 了2.2的</li>
 <li>从<a href="https://spark.apache.org/downloads.html" target="_blank" rel="external">spark官网</a>上下载,指定版本并且选择 package type 为 source code.</li>
