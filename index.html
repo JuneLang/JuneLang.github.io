@@ -65,6 +65,39 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-构建自己的Spark库" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/27/构建自己的Spark库/" class="article-date">
+  <time datetime="2017-07-27T15:19:06.000Z" itemprop="datePublished">2017-07-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/27/构建自己的Spark库/">构建自己的Spark库</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <!-- footer -->
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Spark:自定义Transformer" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/05/04/Spark:自定义Transformer/" class="article-date">
@@ -129,7 +162,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>刚开始接触Scala，各种复杂的features真是有点难理解，特别是逆变和协变，网上其实很多资料都有详细介绍，但看完后总有一种：<code>道理我都懂，但是为什么呢？</code> 的感觉。好吧，自己试一下应该会帮助理解。</p>
-<h1 id="先放张图"><a href="#先放张图" class="headerlink" title="先放张图"></a>先放张图</h1>{% asset_img covariant.png "来自知乎的回答-作者:夏梓耀https://zhihu.com/question/35339328/answer/62632559" %}  
+<h1 id="先放张图"><a href="#先放张图" class="headerlink" title="先放张图"></a>先放张图</h1>{% asset_img covariant.png 来自知乎的回答-作者:夏梓耀https://zhihu.com/question/35339328/answer/62632559 %}
 <p>首先感谢一下这位作者，这张图可以说是很好理解了。根据这张图，当你有一根竹子的时候，你可以把它给任意一个consumer，因为以能量和植物为食的consumer一样也可以食用他们的子类竹子。同时，<br>以竹子为食的consumer &gt;: 植物为食的consumer &gt;: 能量为食的consumer。但是这里有一个问题，常识上来说（以竹子为食的）熊猫（实际上熊猫是杂食动物，只不过图里面的那个长得像熊猫）应该是草食动物的子类，当我们应用了逆变以后，继承关系完全相反了，这点先按下不提。那么对于协变来说，情况就刚好相反…… 很好理解：一个流浪动物收容所专门接收流浪动物，一个流浪猫收容所专门接收流浪猫，流浪猫 is-a 流浪动物，流浪猫收容所 is-a 流浪动物收容所。</p>
 <h1 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h1><p>为了更好的理解逆变和协变，首先要知道什么是里氏替换原则。参考资料：</p>
 <ul>
@@ -196,7 +229,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li></ul>
     </div>
   </div>
 
@@ -207,6 +240,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/07/27/构建自己的Spark库/">构建自己的Spark库</a>
+          </li>
         
           <li>
             <a href="/2017/05/04/Spark:自定义Transformer/">Spark:自定义Transformer</a>
