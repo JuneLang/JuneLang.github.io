@@ -5,17 +5,17 @@
   
   <title>Spark:自定义Transformer | Junlang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Transformer当我们从数据源读取了一些数据之后, 我们经常需要对这些数据进行一些预处理(类型转换,增删改等等). Spark的mllib提供了一些数据转换的类和函数，但是有时候并不能满足我们的需求，所以我们需要自给自足。当然，我们可以自己构建这些类和函数，但是如果可以利用Spark提供的一些接口，当然就事半功倍了。其中一个方法就是extends Transformer。关于Transfor">
+  <meta name="description" content="Transformer当我们从数据源读取了一些数据之后, 我们经常需要对这些数据进行一些预处理(类型转换,增删改等等). Spark的mllib提供了一些数据转换的类和函数，但是有时候并不能满足我们的需求，所以我们需要自给自足。当然，我们可以自己构建这些类和函数，如果可以利用Spark提供的一些接口，当然就事半功倍了。其中一个方法就是extends Transformer。关于Transforme">
 <meta name="keywords" content="Spark,Scala">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spark:自定义Transformer">
 <meta property="og:url" content="http://junelang.github.io/2017/05/04/Spark:自定义Transformer/index.html">
 <meta property="og:site_name" content="Junlang">
-<meta property="og:description" content="Transformer当我们从数据源读取了一些数据之后, 我们经常需要对这些数据进行一些预处理(类型转换,增删改等等). Spark的mllib提供了一些数据转换的类和函数，但是有时候并不能满足我们的需求，所以我们需要自给自足。当然，我们可以自己构建这些类和函数，但是如果可以利用Spark提供的一些接口，当然就事半功倍了。其中一个方法就是extends Transformer。关于Transfor">
-<meta property="og:updated_time" content="2017-05-05T08:42:40.503Z">
+<meta property="og:description" content="Transformer当我们从数据源读取了一些数据之后, 我们经常需要对这些数据进行一些预处理(类型转换,增删改等等). Spark的mllib提供了一些数据转换的类和函数，但是有时候并不能满足我们的需求，所以我们需要自给自足。当然，我们可以自己构建这些类和函数，如果可以利用Spark提供的一些接口，当然就事半功倍了。其中一个方法就是extends Transformer。关于Transforme">
+<meta property="og:updated_time" content="2017-07-31T12:00:51.461Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark:自定义Transformer">
-<meta name="twitter:description" content="Transformer当我们从数据源读取了一些数据之后, 我们经常需要对这些数据进行一些预处理(类型转换,增删改等等). Spark的mllib提供了一些数据转换的类和函数，但是有时候并不能满足我们的需求，所以我们需要自给自足。当然，我们可以自己构建这些类和函数，但是如果可以利用Spark提供的一些接口，当然就事半功倍了。其中一个方法就是extends Transformer。关于Transfor">
+<meta name="twitter:description" content="Transformer当我们从数据源读取了一些数据之后, 我们经常需要对这些数据进行一些预处理(类型转换,增删改等等). Spark的mllib提供了一些数据转换的类和函数，但是有时候并不能满足我们的需求，所以我们需要自给自足。当然，我们可以自己构建这些类和函数，如果可以利用Spark提供的一些接口，当然就事半功倍了。其中一个方法就是extends Transformer。关于Transforme">
   
     <link rel="alternate" href="/atom.xml" title="Junlang" type="application/atom+xml">
   
@@ -90,7 +90,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Transformer"><a href="#Transformer" class="headerlink" title="Transformer"></a>Transformer</h1><p>当我们从数据源读取了一些数据之后, 我们经常需要对这些数据进行一些预处理(类型转换,增删改等等). Spark的mllib提供了一些数据转换的类和函数，但是有时候并不能满足我们的需求，所以我们需要自给自足。当然，我们可以自己构建这些类和函数，但是如果可以利用Spark提供的一些接口，当然就事半功倍了。其中一个方法就是<code>extends Transformer</code>。关于<code>Transformer</code> 和 <code>Pipeline</code> 的介绍请戳<a href="https://spark.apache.org/docs/2.1.0/ml-pipeline.html#properties-of-pipeline-components" target="_blank" rel="external">官方文档</a>.</p>
+        <h1 id="Transformer"><a href="#Transformer" class="headerlink" title="Transformer"></a>Transformer</h1><p>当我们从数据源读取了一些数据之后, 我们经常需要对这些数据进行一些预处理(类型转换,增删改等等). Spark的mllib提供了一些数据转换的类和函数，但是有时候并不能满足我们的需求，所以我们需要自给自足。当然，我们可以自己构建这些类和函数，如果可以利用Spark提供的一些接口，当然就事半功倍了。其中一个方法就是<code>extends Transformer</code>。关于<code>Transformer</code> 和 <code>Pipeline</code> 的介绍请戳<a href="https://spark.apache.org/docs/2.1.0/ml-pipeline.html#properties-of-pipeline-components" target="_blank" rel="external">官方文档</a>.</p>
 <p>一个最简单的非abstract的继承<code>Transformer</code>的类定义如下:</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TypeTransformer</span> <span class="keyword">extends</span> <span class="title">Transformer</span></span>&#123;</div><div class="line">  <span class="keyword">override</span> <span class="keyword">val</span> uid: <span class="type">String</span> = <span class="type">Identifiable</span>.randomUID(<span class="string">"typeTransformer"</span>)</div><div class="line"></div><div class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">transformSchema</span></span>(schema: <span class="type">StructType</span>): <span class="type">StructType</span> = &#123;</div><div class="line">    <span class="comment">// 检查输入和输出是否符合要求, 比如数据类型.</span></div><div class="line">    <span class="comment">// 返回transform之后的schema</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">transform</span></span>(dataset: <span class="type">Dataset</span>[_]): <span class="type">DataFrame</span> = &#123;</div><div class="line">    <span class="comment">// 将输入的dataset(一般来说是DataFrame类型的)转换成新的dataset并返回</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">copy</span></span>(extra: <span class="type">ParamMap</span>): <span class="type">Transformer</span> = defaultCopy(extra) <span class="comment">// 暂时不知道有什么用</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>然后这个<code>TypeTransformer</code>就可以应用到<code>Pipeline</code>里面啦. 这就是我们的类要继承自<code>Transformer</code>的原因了, 因为<code>Pipeline</code>中的<code>stage</code>要么是<code>Transformer</code>,要么是<code>Estimator</code>. 而后者一般用于机器学习方法, 前者就是功能如其名了.</p>
@@ -155,7 +155,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Scala/" style="font-size: 20px;">Scala</a> <a href="/tags/Spark/" style="font-size: 10px;">Spark</a>
+      <a href="/tags/Scala/" style="font-size: 10px;">Scala</a> <a href="/tags/Spark/" style="font-size: 10px;">Spark</a>
     </div>
   </div>
 
