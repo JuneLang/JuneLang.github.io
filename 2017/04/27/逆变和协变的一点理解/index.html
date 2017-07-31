@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="前言刚开始接触Scala，各种复杂的features真是有点难理解，特别是逆变和协变，网上其实很多资料都有详细介绍，但看完后总有一种：道理我都懂，但是为什么呢？ 的感觉。好吧，自己试一下应该会帮助理解。 先放张图{% asset_img covariant.png 来自知乎的回答-作者:夏梓耀https://zhihu.com/question/35339328/answer/62632559 %">
+<meta name="description" content="前言刚开始接触Scala，各种复杂的features真是有点难理解，特别是逆变和协变，网上其实很多资料都有详细介绍，但看完后总有一种：道理我都懂，但是为什么呢？ 的感觉。好吧，自己试一下应该会帮助理解。">
 <meta name="keywords" content="Scala">
 <meta property="og:type" content="article">
 <meta property="og:title" content="逆变和协变的一点理解">
 <meta property="og:url" content="http://junelang.github.io/2017/04/27/逆变和协变的一点理解/index.html">
 <meta property="og:site_name" content="Junlang">
-<meta property="og:description" content="前言刚开始接触Scala，各种复杂的features真是有点难理解，特别是逆变和协变，网上其实很多资料都有详细介绍，但看完后总有一种：道理我都懂，但是为什么呢？ 的感觉。好吧，自己试一下应该会帮助理解。 先放张图{% asset_img covariant.png 来自知乎的回答-作者:夏梓耀https://zhihu.com/question/35339328/answer/62632559 %">
-<meta property="og:updated_time" content="2017-05-05T08:44:35.303Z">
+<meta property="og:description" content="前言刚开始接触Scala，各种复杂的features真是有点难理解，特别是逆变和协变，网上其实很多资料都有详细介绍，但看完后总有一种：道理我都懂，但是为什么呢？ 的感觉。好吧，自己试一下应该会帮助理解。">
+<meta property="og:updated_time" content="2017-07-31T12:44:16.873Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="逆变和协变的一点理解">
-<meta name="twitter:description" content="前言刚开始接触Scala，各种复杂的features真是有点难理解，特别是逆变和协变，网上其实很多资料都有详细介绍，但看完后总有一种：道理我都懂，但是为什么呢？ 的感觉。好吧，自己试一下应该会帮助理解。 先放张图{% asset_img covariant.png 来自知乎的回答-作者:夏梓耀https://zhihu.com/question/35339328/answer/62632559 %">
+<meta name="twitter:description" content="前言刚开始接触Scala，各种复杂的features真是有点难理解，特别是逆变和协变，网上其实很多资料都有详细介绍，但看完后总有一种：道理我都懂，但是为什么呢？ 的感觉。好吧，自己试一下应该会帮助理解。">
 
 
 
@@ -219,7 +219,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/tags" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -320,7 +320,7 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>刚开始接触Scala，各种复杂的features真是有点难理解，特别是逆变和协变，网上其实很多资料都有详细介绍，但看完后总有一种：<code>道理我都懂，但是为什么呢？</code> 的感觉。好吧，自己试一下应该会帮助理解。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>刚开始接触Scala，各种复杂的features真是有点难理解，特别是逆变和协变，网上其实很多资料都有详细介绍，但看完后总有一种：<code>道理我都懂，但是为什么呢？</code> 的感觉。好吧，自己试一下应该会帮助理解。<br><a id="more"></a></p>
 <h1 id="先放张图"><a href="#先放张图" class="headerlink" title="先放张图"></a>先放张图</h1>{% asset_img covariant.png 来自知乎的回答-作者:夏梓耀https://zhihu.com/question/35339328/answer/62632559 %}
 <p>首先感谢一下这位作者，这张图可以说是很好理解了。根据这张图，当你有一根竹子的时候，你可以把它给任意一个consumer，因为以能量和植物为食的consumer一样也可以食用他们的子类竹子。同时，<br>以竹子为食的consumer &gt;: 植物为食的consumer &gt;: 能量为食的consumer。但是这里有一个问题，常识上来说（以竹子为食的）熊猫（实际上熊猫是杂食动物，只不过图里面的那个长得像熊猫）应该是草食动物的子类，当我们应用了逆变以后，继承关系完全相反了，这点先按下不提。那么对于协变来说，情况就刚好相反…… 很好理解：一个流浪动物收容所专门接收流浪动物，一个流浪猫收容所专门接收流浪猫，流浪猫 is-a 流浪动物，流浪猫收容所 is-a 流浪动物收容所。</p>
 <h1 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h1><p>为了更好的理解逆变和协变，首先要知道什么是里氏替换原则。参考资料：</p>
@@ -481,10 +481,10 @@
             
             
             <div class="site-state-item site-state-tags">
-              
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">标签</span>
-              
+              </a>
             </div>
           
 
