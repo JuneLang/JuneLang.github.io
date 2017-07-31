@@ -1,93 +1,327 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
+
+
+
   
-  <title>Junlang</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta property="og:type" content="website">
 <meta property="og:title" content="Junlang">
 <meta property="og:url" content="http://junelang.github.io/index.html">
 <meta property="og:site_name" content="Junlang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Junlang">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://junelang.github.io/"/>
+
+
+
+
+
+  <title>Junlang</title>
   
-    <link rel="alternate" href="/atom.xml" title="Junlang" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Junlang</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">ORZ...</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://junelang.github.io"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
   
-    <article id="post-构建自己的Spark库" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/07/27/构建自己的Spark库/" class="article-date">
-  <time datetime="2017-07-27T15:19:06.000Z" itemprop="datePublished">2017-07-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/27/构建自己的Spark库/">构建自己的Spark库</a>
-    </h1>
+    
   
 
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Junlang</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">ORZ...</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://junelang.github.io/2017/07/27/构建自己的Spark库/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Junlang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Junlang">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/27/构建自己的Spark库/" itemprop="url">构建自己的Spark库</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-27T17:19:06+02:00">
+                2017-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        <h1 id="获取Spark源码"><a href="#获取Spark源码" class="headerlink" title="获取Spark源码"></a>获取Spark源码</h1><p>开发中难免需要修改Spark源码, 构建自己的Spark库, 并在自己的项目中引用. 下面来说一下具体步骤.<br>有两个方法:  </p>
+      
+
+      
+        
+          
+            <h1 id="获取Spark源码"><a href="#获取Spark源码" class="headerlink" title="获取Spark源码"></a>获取Spark源码</h1><p>开发中难免需要修改Spark源码, 构建自己的Spark库, 并在自己的项目中引用. 下面来说一下具体步骤.<br>有两个方法:  </p>
 <ol>
 <li>从 github 上 clone. 但是如果直接 clone 的话,获取到的是最新的,正在开发的版本,并不稳定. 想要获取之前版本的话, 要指定版本:<br><code>git clone git://github.com/apache/spark.git -b branch-2.2</code><br>我要用的版本是2.1.1, 而2.2中包含了2.1的稳定版, 所以 clone 了2.2的</li>
 <li>从<a href="https://spark.apache.org/downloads.html" target="_blank" rel="external">spark官网</a>上下载,指定版本并且选择 package type 为 source code.</li>
@@ -100,39 +334,117 @@
 <li><a href="http://www.cnblogs.com/jasondan/p/6854837.html" target="_blank" rel="external">http://www.cnblogs.com/jasondan/p/6854837.html</a></li>
 </ul>
 
+          
+        
       
     </div>
-    <!-- footer -->
-  </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
   
-</article>
-
-
 
   
-    <article id="post-Spark:自定义Transformer" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/05/04/Spark:自定义Transformer/" class="article-date">
-  <time datetime="2017-05-04T14:27:33.000Z" itemprop="datePublished">2017-05-04</time>
-</a>
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://junelang.github.io/2017/05/04/Spark:自定义Transformer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Junlang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Junlang">
+    </span>
+
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/04/Spark:自定义Transformer/">Spark:自定义Transformer</a>
-    </h1>
-  
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/04/Spark:自定义Transformer/" itemprop="url">Spark:自定义Transformer</a></h1>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-04T16:27:33+02:00">
+                2017-05-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        <h1 id="Transformer"><a href="#Transformer" class="headerlink" title="Transformer"></a>Transformer</h1><p>当我们从数据源读取了一些数据之后, 我们经常需要对这些数据进行一些预处理(类型转换,增删改等等). Spark的mllib提供了一些数据转换的类和函数，但是有时候并不能满足我们的需求，所以我们需要自给自足。当然，我们可以自己构建这些类和函数，如果可以利用Spark提供的一些接口，当然就事半功倍了。其中一个方法就是<code>extends Transformer</code>。关于<code>Transformer</code> 和 <code>Pipeline</code> 的介绍请戳<a href="https://spark.apache.org/docs/2.1.0/ml-pipeline.html#properties-of-pipeline-components" target="_blank" rel="external">官方文档</a>.</p>
+      
+
+      
+        
+          
+            <h1 id="Transformer"><a href="#Transformer" class="headerlink" title="Transformer"></a>Transformer</h1><p>当我们从数据源读取了一些数据之后, 我们经常需要对这些数据进行一些预处理(类型转换,增删改等等). Spark的mllib提供了一些数据转换的类和函数，但是有时候并不能满足我们的需求，所以我们需要自给自足。当然，我们可以自己构建这些类和函数，如果可以利用Spark提供的一些接口，当然就事半功倍了。其中一个方法就是<code>extends Transformer</code>。关于<code>Transformer</code> 和 <code>Pipeline</code> 的介绍请戳<a href="https://spark.apache.org/docs/2.1.0/ml-pipeline.html#properties-of-pipeline-components" target="_blank" rel="external">官方文档</a>.</p>
 <p>一个最简单的非abstract的继承<code>Transformer</code>的类定义如下:</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TypeTransformer</span> <span class="keyword">extends</span> <span class="title">Transformer</span></span>&#123;</div><div class="line">  <span class="keyword">override</span> <span class="keyword">val</span> uid: <span class="type">String</span> = <span class="type">Identifiable</span>.randomUID(<span class="string">"typeTransformer"</span>)</div><div class="line"></div><div class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">transformSchema</span></span>(schema: <span class="type">StructType</span>): <span class="type">StructType</span> = &#123;</div><div class="line">    <span class="comment">// 检查输入和输出是否符合要求, 比如数据类型.</span></div><div class="line">    <span class="comment">// 返回transform之后的schema</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">transform</span></span>(dataset: <span class="type">Dataset</span>[_]): <span class="type">DataFrame</span> = &#123;</div><div class="line">    <span class="comment">// 将输入的dataset(一般来说是DataFrame类型的)转换成新的dataset并返回</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">copy</span></span>(extra: <span class="type">ParamMap</span>): <span class="type">Transformer</span> = defaultCopy(extra) <span class="comment">// 暂时不知道有什么用</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>然后这个<code>TypeTransformer</code>就可以应用到<code>Pipeline</code>里面啦. 这就是我们的类要继承自<code>Transformer</code>的原因了, 因为<code>Pipeline</code>中的<code>stage</code>要么是<code>Transformer</code>,要么是<code>Estimator</code>. 而后者一般用于机器学习方法, 前者就是功能如其名了.</p>
@@ -141,39 +453,117 @@
 <p>这就完了??<br>好像这个<code>TypeTransformer</code>一次只能处理一列啊, 没错, 就是这样!<br>好蠢啊○|￣|_<br>当然了, 我们可以添加一个方法接收多个inputCol嘛, 不过为了简单介绍一下<code>Pipeline</code>的用法, 我们可以把n个<code>TypeTransformer</code>应用到<code>Pipeline</code>中,每个<code>TypeTransformer</code>的输出都是下一个的输入. 代码如下:<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> ypeTransformers: <span class="type">Array</span>[<span class="type">PipelineStage</span>] = <span class="type">Array</span>(typeTransformer1, typeTransformer2, typeTransformer3)</div><div class="line"><span class="keyword">val</span> typeTransformPipeline = <span class="keyword">new</span> <span class="type">Pipeline</span>().setStages(typeTransformers)</div><div class="line"><span class="keyword">val</span> result = typeTransformPipeline.fit(dataFrame).transform(dataFrame)</div></pre></td></tr></table></figure></p>
 <p>结果就是3个<code>typeTransformer</code>的顺序调用后的结果.</p>
 
+          
+        
       
     </div>
-    <!-- footer -->
-  </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
   
-</article>
-
-
 
   
-    <article id="post-逆变和协变的一点理解" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/27/逆变和协变的一点理解/" class="article-date">
-  <time datetime="2017-04-27T12:39:13.000Z" itemprop="datePublished">2017-04-27</time>
-</a>
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://junelang.github.io/2017/04/27/逆变和协变的一点理解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Junlang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Junlang">
+    </span>
+
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/27/逆变和协变的一点理解/">逆变和协变的一点理解</a>
-    </h1>
-  
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/27/逆变和协变的一点理解/" itemprop="url">逆变和协变的一点理解</a></h1>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-27T14:39:13+02:00">
+                2017-04-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>刚开始接触Scala，各种复杂的features真是有点难理解，特别是逆变和协变，网上其实很多资料都有详细介绍，但看完后总有一种：<code>道理我都懂，但是为什么呢？</code> 的感觉。好吧，自己试一下应该会帮助理解。</p>
+      
+
+      
+        
+          
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>刚开始接触Scala，各种复杂的features真是有点难理解，特别是逆变和协变，网上其实很多资料都有详细介绍，但看完后总有一种：<code>道理我都懂，但是为什么呢？</code> 的感觉。好吧，自己试一下应该会帮助理解。</p>
 <h1 id="先放张图"><a href="#先放张图" class="headerlink" title="先放张图"></a>先放张图</h1>{% asset_img covariant.png 来自知乎的回答-作者:夏梓耀https://zhihu.com/question/35339328/answer/62632559 %}
 <p>首先感谢一下这位作者，这张图可以说是很好理解了。根据这张图，当你有一根竹子的时候，你可以把它给任意一个consumer，因为以能量和植物为食的consumer一样也可以食用他们的子类竹子。同时，<br>以竹子为食的consumer &gt;: 植物为食的consumer &gt;: 能量为食的consumer。但是这里有一个问题，常识上来说（以竹子为食的）熊猫（实际上熊猫是杂食动物，只不过图里面的那个长得像熊猫）应该是草食动物的子类，当我们应用了逆变以后，继承关系完全相反了，这点先按下不提。那么对于协变来说，情况就刚好相反…… 很好理解：一个流浪动物收容所专门接收流浪动物，一个流浪猫收容所专门接收流浪猫，流浪猫 is-a 流浪动物，流浪猫收容所 is-a 流浪动物收容所。</p>
 <h1 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h1><p>为了更好的理解逆变和协变，首先要知道什么是里氏替换原则。参考资料：</p>
@@ -200,119 +590,284 @@
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 逆变</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>[-<span class="type">T</span>] </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">contraFunc</span></span>(x: <span class="type">T</span>)</div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">coFunc</span></span>[<span class="type">H</span> &lt;: <span class="type">T</span>](x: <span class="type">T</span>): <span class="type">H</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 协变</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>[<span class="type">T</span>] </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">contraFunc</span></span>[<span class="type">H</span> :&gt; <span class="type">T</span>](x: <span class="type">H</span>)</div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">coFunc</span></span>(): <span class="type">T</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>那么什么时候使用逆变或者协变呢？一个大概的通用的原则是：当这个容器类（Container）中的方法把泛型对象当做数据的消费者（我把一些数据塞给你，但是我并不需要知道你怎么处理这些数据）的时候，应该声明为逆变（即使接收数据的是子类，所接收的数据类型的范围也不会变小）；当把泛型对象当做数据的提供者（我需要你返回一些数据）的时候，应该声明为协变（子类返回更加具体的数据类型）。当然现实情况是，很多时候我们既需要处理数据也需要返回数据，那么在逆变的情况下如果需要返回数据，应该通过一个上界来保证子类比父类的返回类型更加具体。在协变的情况下，通过下界来保证子类接受的参数比父类的范围要大。<br>值得注意的是，如果在协变中方法定义了下界使得接收参数范围类型变大以符合逆变点的要求，需要注意这时候方法理论上可以接受下界类型的任意父类型（上至AnyRef)，这可能会导致出错。<br>反过来，如果定义了逆变，那么父类的Container就会变成子类的Container的子类，如果不注意到这一点，很可能也会出错。比如<code>篮球</code>是<code>运动</code>的子类，如果我们定义一个逆变的容器类<code>运动员</code>，带有一个方法<code>play(x: T)</code>接收任意运动类型，那么<code>运动员[篮球]</code>是<code>运动员[运动]</code>的父类,那么篮球运动员和运动员都可以<code>play(篮球)</code>，而篮球运动员不能<code>play(运动)</code>而运动员可以。根据LSP，这样的定义是对的。然而这时候如果我们再定义一个篮球队，招募篮球运动员。然而这时候运动员是篮球运动员的子类，我们很可能会不小心招募到一个不会篮球的运动员，gg。</p>
 
+          
+        
       
     </div>
-    <!-- footer -->
-  </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
   
-</article>
 
 
+          </div>
+          
 
-  
 
-</section>
+          
+
+        </div>
         
-          <aside id="sidebar">
+          
   
-    
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scala/">Scala</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/">Spark</a></li></ul>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
   </div>
 
-
-  
+  <aside id="sidebar" class="sidebar">
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Scala/" style="font-size: 10px;">Scala</a> <a href="/tags/Spark/" style="font-size: 10px;">Spark</a>
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Junlang" />
+          <p class="site-author-name" itemprop="name">Junlang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
     </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li></ul>
-    </div>
-  </div>
+  </aside>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2017/07/27/构建自己的Spark库/">构建自己的Spark库</a>
-          </li>
-        
-          <li>
-            <a href="/2017/05/04/Spark:自定义Transformer/">Spark:自定义Transformer</a>
-          </li>
-        
-          <li>
-            <a href="/2017/04/27/逆变和协变的一点理解/">逆变和协变的一点理解</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
         
       </div>
-      <footer id="footer">
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
   
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2017 Junlang<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Junlang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
     
-<script>
-  var disqus_shortname = 'junelang';
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
   
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
 </script>
 
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js"></script>
 
-  </div>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>
