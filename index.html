@@ -320,17 +320,14 @@
 
       
         
-          
-            <p>Spark 可以从 Elasticsearch 读取数据, 并且支持查询.<br>但是!<br>却并不支持 aggregation! 至少 <code>elasticsearch-spark20-2.11</code> 还不行.<br>如果要做聚合查询, 那么就要用到 elastichsearch scala client <code>elastic4s</code> (<a href="https://github.com/sksamuel/elastic4s)了" target="_blank" rel="external">https://github.com/sksamuel/elastic4s)了</a>.</p>
-<p>但是目前 elastic4s 和 Spark 有两个兼容问题:</p>
-<h2 id="Class-path-contains-multiple-SLF4J-bindings"><a href="#Class-path-contains-multiple-SLF4J-bindings" class="headerlink" title="Class path contains multiple SLF4J bindings"></a>Class path contains multiple SLF4J bindings</h2><p>elastic4s 和 Spark 都使用了 slf4J-log4j 来做 logging, 从而导致了 multiple bindings 的问题. 解决方案: 导入依赖的时候,显式去除 slf4J-log4j 的导入. 在 sbt 下,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">val elastic4sVersion = &quot;6.0.0-M3&quot;</div><div class="line">libraryDependencies ++= &quot;com.sksamuel.elastic4s&quot; %% &quot;elastic4s-http&quot; % elastic4sVersion exclude(&quot;org.slf4j&quot;, &quot;slf4j-log4j12&quot;)</div></pre></td></tr></table></figure></p>
-<p>实际去除的包可根据报错的时候显示的包的名字来决定, 不一定是 “slf4j-log4j12”.</p>
-<p>重新运行程序, 会发现 multiple bindings 的问题没了, 但是会有一个新的 WARN: “No appenders could be found for logger”. 这是因为 log4j 没有配置, 准确来说, log4j 找不到配置文件 log4j.properties 或 log4j.xml. 虽然说, 这个只是 WARN, 并不影响程序运行. 如果要解决的话, 需要为程序指定一个配置文件或者程序内用代码配置.</p>
-<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>程序根目录下(或者某个子目录)创建一个 log4j.properties 文件, 具体配置网上有很多. 然后启动程序时, 加上启动参数(比如在 intelliJ下 Build -&gt; Edit Configurations -&gt; VM options): <code>-Dlog4j.configurationFile=file:&quot;Path/log4j2.properties&quot;</code>. 然后 WARN 就不会再出现啦. 但是这里还是有问题, 就是手动指定了 log4j 配置之后, Spark 自带的配置就被覆盖了, 然后运行 Spark 相关代码的时候控制台会完全看不清在干嘛. 于是乎, 找到 Spark 的默认配置文件 <code>$SPARKHOME/conf/log4j.properties.template</code>, 把内容复制到自己的配置文件里就好了.</p>
-<h2 id="Netty-版本兼容"><a href="#Netty-版本兼容" class="headerlink" title="Netty 版本兼容"></a>Netty 版本兼容</h2><p>目前, Spark2.2.0 还是使用 Netty-4.0, 而 elastic4s 在5.0版本之后用的就是 Netty-4.1, 在 Spark 项目里使用 elastic4s 会出现 <code>NoSuchMethodError</code>. 最简单的解决办法, 使用最新最新的 elastic4s 版本, 就是 6.0 以上, 这个版本里不再用 Netty 的依赖. 所以在上面的 sbt 配置里可以看到, <code>elastic4sVersion = &quot;6.0.0-M3&quot;</code></p>
-<p>最后再完整说一下运行环境:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// Spark 2.2.0; 使用自己修改过的, 所以这里没有 Spark</div><div class="line">scalaVersion := &quot;2.11.8&quot;</div><div class="line">libraryDependencies += &quot;org.elasticsearch&quot; % &quot;elasticsearch-spark-20_2.11&quot; % &quot;5.4.0&quot;</div><div class="line">val elastic4sVersion = &quot;6.0.0-M3&quot;</div><div class="line">libraryDependencies ++= &quot;com.sksamuel.elastic4s&quot; %% &quot;elastic4s-http&quot; % elastic4sVersion exclude(&quot;org.slf4j&quot;, &quot;slf4j-log4j12&quot;)</div></pre></td></tr></table></figure></p>
-
-          
+          <p>Spark 可以从 Elasticsearch 读取数据, 并且支持查询.<br>但是!<br>却并不支持 aggregation! 至少 <code>elasticsearch-spark20-2.11</code> 还不行.<br>如果要做聚合查询, 那么就要用到 elastichsearch scala client <code>elastic4s</code> (<a href="https://github.com/sksamuel/elastic4s)了" target="_blank" rel="external">https://github.com/sksamuel/elastic4s)了</a>.</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/22/elastic4s-和-Spark-排雷/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

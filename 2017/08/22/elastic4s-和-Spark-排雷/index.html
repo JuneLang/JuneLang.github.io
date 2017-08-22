@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="Spark 可以从 Elasticsearch 读取数据, 并且支持查询.但是!却并不支持 aggregation! 至少 elasticsearch-spark20-2.11 还不行.如果要做聚合查询, 那么就要用到 elastichsearch scala client elastic4s (https://github.com/sksamuel/elastic4s)了. 但是目前 elast">
+<meta name="description" content="Spark 可以从 Elasticsearch 读取数据, 并且支持查询.但是!却并不支持 aggregation! 至少 elasticsearch-spark20-2.11 还不行.如果要做聚合查询, 那么就要用到 elastichsearch scala client elastic4s (https://github.com/sksamuel/elastic4s)了.">
 <meta name="keywords" content="Spark,elastic4s,log4j">
 <meta property="og:type" content="article">
 <meta property="og:title" content="elastic4s 和 Spark 排雷">
 <meta property="og:url" content="http://junelang.github.io/2017/08/22/elastic4s-和-Spark-排雷/index.html">
 <meta property="og:site_name" content="Junlang">
-<meta property="og:description" content="Spark 可以从 Elasticsearch 读取数据, 并且支持查询.但是!却并不支持 aggregation! 至少 elasticsearch-spark20-2.11 还不行.如果要做聚合查询, 那么就要用到 elastichsearch scala client elastic4s (https://github.com/sksamuel/elastic4s)了. 但是目前 elast">
-<meta property="og:updated_time" content="2017-08-22T12:30:53.273Z">
+<meta property="og:description" content="Spark 可以从 Elasticsearch 读取数据, 并且支持查询.但是!却并不支持 aggregation! 至少 elasticsearch-spark20-2.11 还不行.如果要做聚合查询, 那么就要用到 elastichsearch scala client elastic4s (https://github.com/sksamuel/elastic4s)了.">
+<meta property="og:updated_time" content="2017-08-22T12:32:10.691Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="elastic4s 和 Spark 排雷">
-<meta name="twitter:description" content="Spark 可以从 Elasticsearch 读取数据, 并且支持查询.但是!却并不支持 aggregation! 至少 elasticsearch-spark20-2.11 还不行.如果要做聚合查询, 那么就要用到 elastichsearch scala client elastic4s (https://github.com/sksamuel/elastic4s)了. 但是目前 elast">
+<meta name="twitter:description" content="Spark 可以从 Elasticsearch 读取数据, 并且支持查询.但是!却并不支持 aggregation! 至少 elasticsearch-spark20-2.11 还不行.如果要做聚合查询, 那么就要用到 elastichsearch scala client elastic4s (https://github.com/sksamuel/elastic4s)了.">
 
 
 
@@ -321,6 +321,7 @@
 
       
         <p>Spark 可以从 Elasticsearch 读取数据, 并且支持查询.<br>但是!<br>却并不支持 aggregation! 至少 <code>elasticsearch-spark20-2.11</code> 还不行.<br>如果要做聚合查询, 那么就要用到 elastichsearch scala client <code>elastic4s</code> (<a href="https://github.com/sksamuel/elastic4s)了" target="_blank" rel="external">https://github.com/sksamuel/elastic4s)了</a>.</p>
+<a id="more"></a>
 <p>但是目前 elastic4s 和 Spark 有两个兼容问题:</p>
 <h2 id="Class-path-contains-multiple-SLF4J-bindings"><a href="#Class-path-contains-multiple-SLF4J-bindings" class="headerlink" title="Class path contains multiple SLF4J bindings"></a>Class path contains multiple SLF4J bindings</h2><p>elastic4s 和 Spark 都使用了 slf4J-log4j 来做 logging, 从而导致了 multiple bindings 的问题. 解决方案: 导入依赖的时候,显式去除 slf4J-log4j 的导入. 在 sbt 下,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">val elastic4sVersion = &quot;6.0.0-M3&quot;</div><div class="line">libraryDependencies ++= &quot;com.sksamuel.elastic4s&quot; %% &quot;elastic4s-http&quot; % elastic4sVersion exclude(&quot;org.slf4j&quot;, &quot;slf4j-log4j12&quot;)</div></pre></td></tr></table></figure></p>
 <p>实际去除的包可根据报错的时候显示的包的名字来决定, 不一定是 “slf4j-log4j12”.</p>
